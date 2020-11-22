@@ -1,4 +1,6 @@
 package com.name.myproject;
+import com.sun.xml.internal.fastinfoset.util.ValueArray;
+
 import java.io.IOException;
 
 public class GameLogic {
@@ -6,7 +8,9 @@ public class GameLogic {
     private char choice;
     private char choicePC;
     private char playerVariant;
-    private char pcVariant;
+  //  private char pcVariant;
+    Variants var1;
+    Variants var2;
 
    private void showMenu() {
         System.out.println("Choose your variant: ");
@@ -15,21 +19,22 @@ public class GameLogic {
         System.out.println("        3. PAPER; ");
     }
 
-    private char getInput()
-    throws IOException {
-        choice = (char) System.in.read(); //переменной присваивается значение, введенное из консоли
+    private char getInput() {
+       try {
+           choice = (char) System.in.read(); //переменной присваивается значение, введенное из консоли
+       } catch (IOException e) {
+           System.out.println(e.getMessage());
+       }
         return choice; // значение переменной choice возвращается как результат работы метода getInput()
     }
 
-    private void validateInput(char variant) throws IOException {
+    private void validateInput(char variant) {
         while (variant < '1' | variant > '3') { //цикл, отсеивающий неверные варианты выбора игрока
             System.out.print("Your choice is wrong!");
             System.out.println("Please, choose again.");
             showMenu(); //запуск метода для показа меню
             getInput(); //запуск метода для повторного выбора игрока
-
         }
-
         System.out.println("Player choice is " + variant);
 
     }
@@ -43,38 +48,50 @@ public class GameLogic {
       return choicePC; //переменная choicePC возвращается как результат работы метода generationPCVariants()
     }
 
+    private Variants convertChoice(char userChoice) {
+
+        if (userChoice == '1')
+            return Variants.ROCK;
+        else if (userChoice == '2')
+            return Variants.SCISSORS;
+        else
+        return Variants.PAPER;
+    }
+
     Field condition = new Field();
 
-    private String checkWinner(char var1, char var2) {
-        condition.updateField1(var1);
-        condition.updateField2(var2);
-       if ( var1 == var2) {
+    String checkWinner() {
+       if ( var1.equals(var2)) {
            return "draw";
-       } else if ((var1 == Field.ROCK && var2 == Field.SCISSORS) || (var1 == Field.SCISSORS && var2 == Field.PAPER) ||
-                (var1 == Field.PAPER && var2 == Field.ROCK)) {
+       } else if ((var1.equals(Variants.ROCK) && var2.equals(Variants.SCISSORS)) ||
+                 (var1.equals(Variants.SCISSORS) && var2.equals(Variants.PAPER)) ||
+                 (var1.equals(Variants.PAPER) && var2.equals(Variants.ROCK))) {
            return "win";
        }  else
-         //  System.out.println(choicePC);
-           /*if ((choice == '2' && (char) choicePC == '1') || (choice == '3' && (char) choicePC == '2') ||
-                (choice == '1' && (char) choicePC == '3')) */
            return "loose";
     }
 
     private void output(String result) {
-        if ("draw".equals(result))
+        if (result.equals("draw")) {
             System.out.println("Dead heat.");
-        else if ("win".equals(result))
+        } else if (result.equals("win")) {
             System.out.println("Congratulation. You win!");
-        else if ("loose".equals(result))
+        } else if (result.equals("loose"))
             System.out.println("PC is winner!");
     }
 
-    public void logic() throws IOException {
+    public void logic() {
         showMenu();
         playerVariant = getInput();
         validateInput(playerVariant);
-        pcVariant = generationPCVariants();
-       // checkWinner(playerVariant, pcVariant);
-        output(checkWinner(playerVariant, pcVariant));
+        convertChoice(choice);
+        //generationPCVariants();
+        convertChoice(generationPCVariants());
+        condition.updateField1(convertChoice(choice));
+        condition.updateField2(convertChoice(generationPCVariants()));
+        var1 = condition.getFirstUserChoice();
+        var2 = condition.getSecondUserChoice();
+        checkWinner();
+        output(checkWinner());
     }
 }

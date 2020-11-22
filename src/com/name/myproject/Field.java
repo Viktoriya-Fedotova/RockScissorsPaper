@@ -3,19 +3,42 @@ import static com.name.myproject.Variants.*;
 
 
 public class Field {
-   private char playerChoice;
-   private char pcChoice;
+   private Variants playerChoice;
+   private Variants pcChoice;
+   private Variants firstUserChoice;
+   private Variants secondUserChoice;
 
-   final static char ROCK = '1';
-   final static char SCISSORS = '2';
-   final static char PAPER = '3';
+   Variants rock = Variants.ROCK;
+   Variants scissors = Variants.SCISSORS;
+   Variants paper = Variants.PAPER;
 
-   void updateField1(char playerChoice) { //метод (сеттер) для присвоения значения переменной playerChoice
-      this.playerChoice = playerChoice; // которая равная переменной choice из метода getInput()
+   void updateField1(Variants playerChoice) { //метод (сеттер) для присвоения значения переменной playerChoice
+
+       this.playerChoice = playerChoice; // которая равная переменной choice из метода getInput()
    }
 
-   void updateField2(char pcChoice) { //метод (сеттер) для присвоения значения переменной pcChoice
-      this.pcChoice = pcChoice;
+   void updateField2(Variants pcChoice) { //метод (сеттер) для присвоения значения переменной pcChoice
+
+       this.pcChoice = pcChoice;
    }
 
+   public Variants getFirstUserChoice() {
+       return this.playerChoice;
+   }
+
+   public Variants getSecondUserChoice() {
+       return this.pcChoice;
+   }
+
+
+
+ /*  public char getUserChoice() {
+       return playerChoice;
+   }
+
+   public char getPcChoice() {
+       return pcChoice;
+   }
+
+*/
 }
