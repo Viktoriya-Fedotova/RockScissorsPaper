@@ -86,7 +86,7 @@ public class GameLogic {
         validateInput(playerVariant);
         convertChoice(choice);
         //generationPCVariants();
-        convertChoice(generationPCVariants());
+        //convertChoice(generationPCVariants());
         condition.updateField1(convertChoice(choice));
         condition.updateField2(convertChoice(generationPCVariants()));
         var1 = condition.getFirstUserChoice();
