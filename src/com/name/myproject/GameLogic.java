@@ -1,5 +1,4 @@
 package com.name.myproject;
-import com.sun.xml.internal.fastinfoset.util.ValueArray;
 
 import java.io.IOException;
 
@@ -8,7 +7,6 @@ public class GameLogic {
     private char choice;
     private char choicePC;
     private char playerVariant;
-  //  private char pcVariant;
     Variants var1;
     Variants var2;
 

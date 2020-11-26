@@ -5,12 +5,6 @@ import static com.name.myproject.Variants.*;
 public class Field {
    private Variants playerChoice;
    private Variants pcChoice;
-   private Variants firstUserChoice;
-   private Variants secondUserChoice;
-
-   Variants rock = Variants.ROCK;
-   Variants scissors = Variants.SCISSORS;
-   Variants paper = Variants.PAPER;
 
    void updateField1(Variants playerChoice) { //метод (сеттер) для присвоения значения переменной playerChoice
 
@@ -23,22 +17,13 @@ public class Field {
    }
 
    public Variants getFirstUserChoice() {
+
        return this.playerChoice;
    }
 
    public Variants getSecondUserChoice() {
+
        return this.pcChoice;
    }
 
-
-
- /*  public char getUserChoice() {
-       return playerChoice;
-   }
-
-   public char getPcChoice() {
-       return pcChoice;
-   }
-
-*/
 }
