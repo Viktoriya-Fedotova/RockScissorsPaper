@@ -1,6 +1,7 @@
 package com.name.myproject;
 
 import java.io.IOException;
+import java.util.Random;
 
 public class GameLogic {
 
@@ -40,7 +41,8 @@ public class GameLogic {
     private char generationPCVariants() {
       System.out.println("Generation PC variant!");
       char[] index = {'1', '2', '3'}; // массив хранящий выбор ПК типа char
-      int randomIndex = (int) (Math.random() * 2); //рандомный выбор индекса из массива от 0 до 2
+     // int randomIndex = (int) (Math.random() * 2); //рандомный выбор индекса из массива от 0 до 2
+        int randomIndex = new Random().nextInt(index.length);
       choicePC = index[randomIndex]; //переменной choicePC присваивается рандомное значение из массива
       System.out.println("PC choice is " + choicePC);
       return choicePC; //переменная choicePC возвращается как результат работы метода generationPCVariants()
