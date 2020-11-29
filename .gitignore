@@ -1,8 +1,9 @@
-.idea\*
-.out\*
+.idea/
+out
 
 *.jar
 *.war
 *.ear
 
 *.xml
+*.iml

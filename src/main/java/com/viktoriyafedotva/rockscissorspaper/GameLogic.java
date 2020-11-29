@@ -6,6 +6,10 @@ import java.util.Scanner;
 
 public class GameLogic {
 
+    final static String str1 = "Your choice is wrong!";
+    final static String str2 = "Please, choose again.";
+    final static String str3 = "Generation PC variant!";
+
     private final Field field = new Field();
     private final Scanner scanner = new Scanner(System.in);
 
@@ -22,15 +26,15 @@ public class GameLogic {
 
     private boolean validateInput(Integer input) {
         if (input < 1 || input > 3) {
-            System.out.println("Your choice is wrong!");
-            System.out.println("Please, choose again.");
+            System.out.println(str1);
+            System.out.println(str2);
             return false;
         }
         return true;
     }
 
     private Variants generatePCChoice() {
-        System.out.println("Generation PC variant!");
+        System.out.println(str3);
         int randomIndex = new Random().nextInt(3);
         return Variants.values()[randomIndex];
     }
