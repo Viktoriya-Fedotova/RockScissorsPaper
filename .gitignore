@@ -1,0 +1,8 @@
+.idea\*
+.out\*
+
+*.jar
+*.war
+*.ear
+
+*.xml
